@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<input type="text" id="productAdd">
+<button type="button" onclick="productAdd()">Add</button>
+<br>
+<button type="button" onclick="productDisplay()">Display All Products</button>
+<p id="product-display"></p>
+<script>
+    let productArr=[];
+    function productAdd()
+    {
+        productArr.push(document.getElementById('productAdd').value);
+        productDisplay();
+    }
+    function productDisplay()
+    {
+        let display='';
+        for(let i=0;i<productArr.length;i++)
+        {
+            display+=productArr[i]+'<button type="button" onclick="productEdit('+i+')">Edit</button><button type="button" onclick="productDelete('+i+')">Delete</button><br>';
+        }
+        document.getElementById('product-display').innerHTML=display;
+    }
+    function productEdit(index)
+    {
+        productArr[index]=prompt('edit :',productArr[index]);
+        productDisplay();
+    }
+    function productDelete(index)
+    {
+        productArr.splice(index,1);
+        productDisplay();
+    }
+</script>
+</body>
+</html>
